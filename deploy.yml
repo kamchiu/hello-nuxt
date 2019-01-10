@@ -1,0 +1,21 @@
+apps:
+  - script: server/index.js
+    name: hello-nuxt
+    env:
+      COMMON_VARIALBE: true
+    env_production:
+      NODE_ENV: production
+
+deploy:
+  production:
+    user: root
+    host: 45.76.160.125
+    port: 22
+    ref: orgin/master
+    ssh_options: StrictHostKeyChecking=no
+    repo: git@github.com:kamchiu/hello-nuxt.git
+    path: /home/www
+    pre-deploy: git fetch --all
+    post-deploy: npm install && pm2 reload deploy.yml --env production
+    env:
+      NODE_ENV: production
