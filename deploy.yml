@@ -16,6 +16,6 @@ deploy:
     repo: git@github.com:kamchiu/hello-nuxt.git
     path: /home/www
     pre-deploy: git fetch --all
-    post-deploy: npm install && pm2 reload deploy.yml --env production
+    post-deploy: npm install && npm run build && pm2 reload deploy.yml --env production
     env:
       NODE_ENV: production
